@@ -605,7 +605,9 @@ int rtw_os_ndev_register(_adapter *adapter, const char *name)
 
 
 	#ifdef CONFIG_NET_NS
-		dev_net_set(ndev, wiphy_net(adapter_to_wiphy(adapter)));
+		struct net *net_ns = wiphy_net(adapter_to_wiphy(adapter));
+		RTW_INFO("Setting netns for ndev: %p\n", net_ns);
+		dev_net_set(ndev, net_ns);
 	#endif 
 
 #if defined(CONFIG_IOCTL_CFG80211)

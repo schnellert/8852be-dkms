@@ -900,6 +900,7 @@ struct cfg80211_bss *rtw_cfg80211_inform_bss(_adapter *padapter, struct wlan_net
 
 	#ifdef CONFIG_NET_NS
 		wiphy->flags |= WIPHY_FLAG_NETNS_OK;
+		RTW_INFO("NET_NS support enabled: wiphy->flags = %x\n", wiphy->flags);
 	#endif
 
 	channel = pnetwork->network.Configuration.DSConfig;
