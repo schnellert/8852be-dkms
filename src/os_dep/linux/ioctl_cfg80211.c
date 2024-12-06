@@ -898,6 +898,10 @@ struct cfg80211_bss *rtw_cfg80211_inform_bss(_adapter *padapter, struct wlan_net
 	}
 #endif /* !CONFIG_WAPI_SUPPORT */
 
+	#ifdef CONFIG_NET_NS
+		wiphy->flags |= WIPHY_FLAG_NETNS_OK;
+	#endif
+
 	channel = pnetwork->network.Configuration.DSConfig;
 	freq = rtw_ch2freq(channel);
 	notify_channel = ieee80211_get_channel(wiphy, freq);

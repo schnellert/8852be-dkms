@@ -603,6 +603,11 @@ int rtw_os_ndev_register(_adapter *adapter, const char *name)
 	struct net_device *ndev = adapter->pnetdev;
 	u8 rtnl_lock_needed = rtw_rtnl_lock_needed(dvobj);
 
+
+	#ifdef CONFIG_NET_NS
+		dev_net_set(ndev, wiphy_net(adapter_to_wiphy(adapter)));
+	#endif 
+
 #if defined(CONFIG_IOCTL_CFG80211)
 	if (rtw_cfg80211_ndev_res_register(adapter) != _SUCCESS) {
 		rtw_warn_on(1);
